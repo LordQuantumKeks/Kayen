@@ -1,12 +1,13 @@
 # Log data from serial port
 import argparse
 import serial
+from serial import Serial
 import datetime
 import time
 import os
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument("-d", "--device", help="device to read from", default="COM3")
+parser.add_argument("-d", "--device", help="device to read from", default="/dev/ttyUSB0")
 parser.add_argument("-s", "--speed", help="speed in bps", default=9600, type=int)
 args = parser.parse_args()
 
