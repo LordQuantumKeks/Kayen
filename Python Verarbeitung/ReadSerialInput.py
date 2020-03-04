@@ -1,7 +1,8 @@
+#!/usr/bin/env python
 # Log data from serial port
+
 import argparse
 import serial
-from serial import Serial
 import datetime
 import time
 import os
@@ -12,15 +13,14 @@ parser.add_argument("-s", "--speed", help="speed in bps", default=9600, type=int
 args = parser.parse_args()
 
 outputFilePath = os.path.join(os.path.dirname(__file__),
-                 datetime.datetime.now().strftime("%Y-%m-%dT%H.%M.%S") + ".txt")
+                 datetime.datetime.now().strftime("%Y-%m-%dT%H.%M.%S") + ".bin")
 
 with serial.Serial(args.device, args.speed) as ser, open(outputFilePath, mode='wb') as outputFile:
     print("Logging started. Ctrl-C to stop.") 
     try:
         while True:
             time.sleep(1)
-            outputFile.write(bytes('[' + datetime.datetime.now().strftime("%d-%m-%Y %H:%M") + ']', encoding='utf8') + bytes('\n', encoding='utf8'))
-            outputFile.write(ser.read(ser.inWaiting()))
+            outputFile.write((ser.read(ser.inWaiting())))
             outputFile.flush()
     except KeyboardInterrupt:
         print("Logging stopped")
