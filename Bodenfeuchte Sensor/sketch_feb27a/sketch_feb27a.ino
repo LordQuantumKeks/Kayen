@@ -6,7 +6,7 @@ void setup() {
 
    Serial.begin(9600);
 
-   Serial.println("Initialisiere ...");
+   //Serial.println("Initialisiere ...");
 
    delay(2000);
 
@@ -18,11 +18,11 @@ void loop() {
 
    output_value = map(output_value,550,0,0,100);
 
-   Serial.print("Feuchte : ");
+   //Serial.print("Feuchte");
 
    Serial.print(output_value);
 
-   Serial.println("%");
+   Serial.println(' ');
 
    delay(1000);
 

@@ -1,0 +1,1 @@
+maximale größe einer datei für messungen jede 10 minuten: 70MB/Monat
