@@ -15,7 +15,6 @@
 
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawHumidChart);
-        google.charts.setOnLoadCallback(drawTempChart);
 
         var intervalMS = 5000;
         function drawHumidChart () {
@@ -31,26 +30,6 @@
                     }
                     var data = google.visualization.arrayToDataTable(dataArray);
                     var chart = new google.visualization.LineChart(document.querySelector('#chart_div_humid'));
-                    var options = {'title':'', 'curveType': 'function', 'width':700,'height':300};
-                    chart.draw(data,options);
-
-                }
-            });
-        };
-
-        function drawTempChart () {
-            $.ajax({
-                url: 'test1.txt',
-                type: 'get',
-                success: function (txt) {
-                    var dataArray = [['Name', 'Prozent']];
-                    var txtArray = txt.split('\n');
-                    for (var i = 0; i < txtArray.length; i++) {
-                        var tmpData = txtArray[i].split(/\s+/);
-                        dataArray.push([tmpData[0], parseInt(tmpData[1])]);
-                    }
-                    var data = google.visualization.arrayToDataTable(dataArray);
-                    var chart = new google.visualization.LineChart(document.querySelector('#chart_div_temp'));
                     var options = {'title':'', 'curveType': 'function', 'width':700,'height':300};
                     chart.draw(data,options);
 
