@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5">
+    <!-- <meta http-equiv="refresh" content="5"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Website</title>
 
@@ -15,6 +15,7 @@
 
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawHumidChart);
+        google.charts.setOnLoadCallback(drawTempChart);
 
         var intervalMS = 5000;
         function drawHumidChart () {
@@ -22,7 +23,7 @@
                 url: 'humid.txt',
                 type: 'get',
                 success: function (txt) {
-                    var dataArray = [['Name', 'Prozent']];
+                    var dataArray = [['Name', 'Wert']];
                     var txtArray = txt.split('\n');
                     for (var i = 0; i < txtArray.length; i++) {
                         var tmpData = txtArray[i].split(/\s+/);
@@ -30,7 +31,27 @@
                     }
                     var data = google.visualization.arrayToDataTable(dataArray);
                     var chart = new google.visualization.LineChart(document.querySelector('#chart_div_humid'));
-                    var options = {'title':'', 'curveType': 'function', 'width':700,'height':300};
+                    var options = {'title':'', 'curveType': 'function', 'width':$(window).width()*0.45,'height':$(window).height()*0.35};
+                    chart.draw(data,options);
+
+                }
+            });
+        };
+
+        function drawTempChart () {
+            $.ajax({
+                url: 'temp.txt',
+                type: 'get',
+                success: function (txt) {
+                    var dataArray = [['Datum', 'Feuchtigkeit', 'Temperatur']];
+                    var txtArray = txt.split('\n');
+                    for (var i = 0; i < txtArray.length; i++) {
+                        var tmpData = txtArray[i].split(/\s+/);
+                        dataArray.push([tmpData[0], parseInt(tmpData[1]), parseInt(tmpData[2])]);
+                    }
+                    var data = google.visualization.arrayToDataTable(dataArray);
+                    var chart = new google.visualization.LineChart(document.querySelector('#chart_div_temp'));
+                    var options = {'title':'', 'curveType': 'function', 'width':$(window).width()*0.45,'height':$(window).height()*0.35};
                     chart.draw(data,options);
 
                 }
@@ -70,14 +91,28 @@
         </div>
       </nav>
 
-      <div class="card" style="width: 40%; margin-top: 1%; margin-left: 1%;">
-        <div class="card-body">
-          <h5 class="card-title">Bodenfeuchte</h5>
-          <div id="chart_div_humid"></div>
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="card" style="margin-top: 5px; margin-left: 5px;">
+            <div class="card-body">
+              <h5 class="card-title">Bodenfeuchte</h5>
+              <div id="chart_div_humid"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card" style="margin-top: 5px; margin-right: 5px;">
+            <div class="card-body">
+              <h5 class="card-title">Temperatur</h5>
+              <div id="chart_div_temp"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-
+      </div>
       <script>
         feather.replace()
       </script>

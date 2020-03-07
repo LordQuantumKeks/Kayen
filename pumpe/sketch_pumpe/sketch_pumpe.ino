@@ -1,14 +1,16 @@
 void setup() {
  
-   pinMode(4,OUTPUT);
+   pinMode(7,OUTPUT);
    Serial.begin(9600);
    Serial.println("Reading From the Sensor ...");
    delay(2000);
 }
 
   void loop() {
-  digitalWrite(4, HIGH);
-  delay(2000);
-  digitalWrite(4, LOW);
-  delay(2000);
+  digitalWrite(7, HIGH);
+  Serial.println("on");
+  delay(5000);
+  digitalWrite(7, LOW);
+  Serial.println("off");
+  delay(5000);
 }
