@@ -2,3 +2,7 @@
     width: 14px;
     height: 14px;
 }
+
+body{
+    overflow-x: hidden;
+}

@@ -16,6 +16,7 @@
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawHumidChart);
         google.charts.setOnLoadCallback(drawTempChart);
+        google.charts.setOnLoadCallback(filler);
 
         var intervalMS = 5000;
         function drawHumidChart () {
@@ -58,6 +59,26 @@
             });
         };
 
+        function filler () {
+            $.ajax({
+                url: 'temp.txt',
+                type: 'get',
+                success: function (txt) {
+                    var dataArray = [['Datum', 'Feuchtigkeit', 'Temperatur']];
+                    var txtArray = txt.split('\n');
+                    for (var i = 0; i < txtArray.length; i++) {
+                        var tmpData = txtArray[i].split(/\s+/);
+                        dataArray.push([tmpData[0], parseInt(tmpData[1]), parseInt(tmpData[2])]);
+                    }
+                    var data = google.visualization.arrayToDataTable(dataArray);
+                    var chart = new google.visualization.LineChart(document.querySelector('#chart_div_filler'));
+                    var options = {'title':'', 'curveType': 'function', 'width':$(window).width()*0.45,'height':$(window).height()*0.30};
+                    chart.draw(data,options);
+
+                }
+            });
+        };
+
         google.load('visualization', '1', {packages:['corechart'], callback: drawHumidChart});   
     </script>
 
@@ -72,20 +93,20 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><i data-feather="cpu"></i> Kayen Control</a>
+        <a class="navbar-brand" href="/"><i data-feather="cpu"></i> Kayen Control</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="feather-14" data-feather="home"></i> Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/"><i class="feather-14" data-feather="home"></i> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="feather-14" data-feather="book"></i> Statistik </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="feather-14" data-feather="settings"></i> Einstellungen </a>
+              <a class="nav-link" href="/settings.html"><i class="feather-14" data-feather="settings"></i> Einstellungen </a>
             </li>
           </ul>
         </div>
@@ -113,20 +134,22 @@
       </div>
 
       <div class="row">
-        <!--  -->
-        <div class="col-md-8">
+        <!-- Bewässerung -->
+        <div class="col-md-6">
           <div class="card" style="margin-top: 5px; margin-left: 20px;">
             <div class="card-body">
-              <h5 class="card-title">Bodenfeuchte</h5>
-              <div id="chart_div_humid"></div>
+              <h5 class="card-title">Bewässerung</h5>
+              <div id="chart_div_filler"></div>
+              <br>
+              <button type="button" class="btn btn-outline-warning">Bewässern</button>
+              <button type="button" class="btn btn-outline-secondary">Einstellungen</button>
             </div>
           </div>
         </div>
-
       </div>
 
       <script>
-        feather.replace()
+        feather.replace();
       </script>
 </body>
 </html>
