@@ -1,0 +1,7 @@
+wasser_takt = 300
+
+licht_takt = 43200
+
+force_wasser = 0
+
+lift_rpm = 5000

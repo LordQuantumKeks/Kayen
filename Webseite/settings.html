@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/feather-icons"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -39,8 +39,88 @@
         </div>
       </nav>
 
-      
+      <div class="row">
 
+        <div class="col-md-11 mx-auto" style="margin-left: 12px; margin-top: 5px;">
+        
+        <div id="wrong_input" class="alert alert-warning alert-dismissible fade show hidden" role="alert" style="text-align: center;">
+          <strong>Achtung!</strong> Die Änderungen wurden nicht übernommen, da die Eingabe fehlerhaft war!
+        </div>
+        <div id="success_alert" class="alert alert-success alert-dismissible fade show hidden" role="alert" style="text-align: center;">
+          <strong>Änderungen Erfolgreich!</strong> Es könnte einen Moment dauern, bis die Änderungen in Kraft treten.
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4" style="margin-left: 12px;">
+
+          <small>Lüfter RPM:</small>
+          <div class="input-group mb-3">
+            <input id="luft_rpm" type="text" class="form-control" placeholder="Umdrehungen pro Minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField()">Ändern</button>
+            </div>
+          </div>
+
+          <small>Bewässerungsschwelle:</small>
+          <div class="input-group mb-3">
+            <input id="luft_rpm" type="text" class="form-control" placeholder="Bodenfeuchtigkeitswert" aria-label="Bodenfeuchtigkeit" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField()">Ändern</button>
+            </div>
+          </div>
+
+          <small>Lichttaktung:</small>
+          <div class="input-group mb-3">
+            <input id="luft_rpm" type="text" class="form-control" placeholder="Lüfter Rounds per minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField()">Ändern</button>
+            </div>
+          </div>
+
+          <small>Temperatur:</small>
+          <div class="input-group mb-3">
+            <input id="luft_rpm" type="text" class="form-control" placeholder="Lüfter Rounds per minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField()">Ändern</button>
+            </div>
+          </div>
+
+          <small>Wasserstandwarnung bei:</small>
+          <div class="input-group mb-3">
+            <input id="luft_rpm" type="text" class="form-control" placeholder="Lüfter Rounds per minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField()">Ändern</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <script>
+      
+      function getInputFromField(){
+
+        window.inputVal = document.getElementById("luft_rpm").value;
+
+        if (window.inputVal == "" || window.inputVal == 0){
+
+          $('#wrong_input').removeClass('hidden');
+          $('#success_alert').addClass('hidden');
+
+        } else {
+          
+          $('#wrong_input').addClass('hidden');
+          $('#success_alert').removeClass('hidden');
+        
+        }
+
+      };
+
+      </script>
       <script>
           feather.replace();
       </script>
