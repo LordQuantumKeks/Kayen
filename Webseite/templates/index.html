@@ -106,7 +106,7 @@
               <a class="nav-link" href="#"><i class="feather-14" data-feather="book"></i> Statistik </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="feather-14" data-feather="settings"></i> Einstellungen </a>
+              <a class="nav-link" href="{{ url_for('static', filename='settings.html')}}"><i class="feather-14" data-feather="settings"></i> Einstellungen </a>
             </li>
           </ul>
         </div>
@@ -152,7 +152,7 @@
             <div class="card-body">
               <h5 class="card-title">Allgemeine Einstellungen</h5>
               <br>
-              <object data="{{ url_for('static', filename='settings.txt')}}" width="300" height="200">Not supported by browser</object>               <!-- KODIERUNG: 0.300;1.43200;2.0;3.5000 -->
+              <object data="/settings" width="300" height="200">Not supported by browser</object>               <!-- KODIERUNG: 0.300;1.43200;2.0;3.5000 -->
             </div>
           </div>
         </div>
