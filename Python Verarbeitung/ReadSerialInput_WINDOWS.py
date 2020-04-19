@@ -6,7 +6,7 @@ import time
 import os
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument("-d", "--device", help="device to read from", default="COM3")
+parser.add_argument("-d", "--device", help="device to read from", default="COM6")
 parser.add_argument("-s", "--speed", help="speed in bps", default=9600, type=int)
 args = parser.parse_args()
 
@@ -19,7 +19,7 @@ with serial.Serial(args.device, args.speed) as ser, open(outputFilePath, mode='w
     time.sleep(3)
     try:
         while True:
-            time.sleep(1)
+            time.sleep(5)
             outputFile.write((datetime.datetime.now().strftime("%d.%m.%Y-%H:%M ")).encode() + (ser.read(ser.inWaiting())))
             outputFile.flush()
     except KeyboardInterrupt:

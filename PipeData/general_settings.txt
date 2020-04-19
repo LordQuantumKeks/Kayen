@@ -1,0 +1,4 @@
+luft_rpm=555
+bodenfeuchteschwelle=12
+licht_takt=43200
+temp=22.5
