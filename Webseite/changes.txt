@@ -1,1 +1,1 @@
-{"luft_rpm": "123"}
+{"licht_takt": "280"}

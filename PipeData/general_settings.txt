@@ -1,4 +1,4 @@
-luft_rpm=555
+luft_rpm=280
 bodenfeuchteschwelle=12
-licht_takt=43200
+licht_takt=280
 temp=22.5
