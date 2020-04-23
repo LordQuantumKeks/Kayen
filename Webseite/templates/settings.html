@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,137 +19,142 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/"><i data-feather="cpu"></i> Kayen Control</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <span class="navbar-toggler-icon"></span>
+    </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/"><i class="feather-14" data-feather="home"></i> Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="feather-14" data-feather="book"></i> Statistik </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="feather-14" data-feather="settings"></i> Einstellungen </a>
-            </li>
-          </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"><i class="feather-14" data-feather="home"></i> Home <span
+              class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="feather-14" data-feather="book"></i> Statistik </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="feather-14" data-feather="settings"></i> Einstellungen </a>
+                </li>
+            </ul>
         </div>
-      </nav>
+    </nav>
 
-      <div class="row">
+    <div class="row">
 
         <div class="col-md-11 mx-auto" style="margin-left: 12px; margin-top: 5px;">
-        
-        <div id="wrong_input" class="alert alert-warning alert-dismissible fade show hidden" role="alert" style="text-align: center;">
-          <strong>Achtung!</strong> Die Änderungen wurden nicht übernommen, da die Eingabe fehlerhaft war!
+
+            <div id="wrong_input" class="alert alert-warning alert-dismissible fade show hidden" role="alert" style="text-align: center;">
+                <strong>Achtung!</strong> Die Änderungen wurden nicht übernommen, da die Eingabe fehlerhaft war!
+            </div>
+            <div id="success_alert" class="alert alert-success alert-dismissible fade show hidden" role="alert" style="text-align: center;">
+                <strong>Änderungen Erfolgreich!</strong> Es könnte einen Moment dauern, bis die Änderungen in Kraft treten.
+            </div>
         </div>
-        <div id="success_alert" class="alert alert-success alert-dismissible fade show hidden" role="alert" style="text-align: center;">
-          <strong>Änderungen Erfolgreich!</strong> Es könnte einen Moment dauern, bis die Änderungen in Kraft treten.
-        </div>
-      </div>
-      </div>
+    </div>
 
-      <div class="row">
-        <div class="col-md-4" style="margin-left: 12px;">
-
-          <small>Lüfter RPM:</small>
-          <div class="input-group mb-3">
-            <input id="luft_rpm" type="text" class="form-control" placeholder="Umdrehungen pro Minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
-            </div>
-          </div>
-
-          <small>Bewässerungsschwelle:</small>
-          <div class="input-group mb-3">
-            <input id="bodenfeuchteschwelle" type="text" class="form-control" placeholder="Bodenfeuchtigkeitswert" aria-label="Bodenfeuchtigkeit" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
-            </div>
-          </div>
-
-          <small>Lichttaktung:</small>
-          <div class="input-group mb-3">
-            <input id="licht_takt" type="text" class="form-control" placeholder="Lüfter Rounds per minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
-            </div>
-          </div>
-
-          <small>Temperatur:</small>
-          <div class="input-group mb-3">
-            <input id="temp" type="text" class="form-control" placeholder="Lüfter Rounds per minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
-            </div>
-          </div>
-
-          <small>Wasserstandwarnung bei:</small>
-          <div class="input-group mb-3">
-            <input id="wasserstand" type="text" class="form-control" placeholder="Lüfter Rounds per minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
-            </div>
-          </div>
-
-        </div>
+    <div class="row">
         <div class="col-md-6">
-          <small> </small>
-          <div class="card" style="margin-top: 25px;">
-            <div class="card-body">
-              <h5 class="card-title">Aktive Einstellungen</h5>
-              <br>
-              <object data="{{ url_for('static', filename='general_settings.txt')}}" width="300" height="200">Not supported by browser</object>
+            <div class="card" style="margin-left: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Änderungen</h5>
+                    <small>Lüfter RPM:</small>
+                    <div class="input-group mb-3">
+                        <input id="luft_rpm" type="text" class="form-control" placeholder="Umdrehungen pro Minute" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
+                        </div>
+                    </div>
+
+                    <small>Bewässerungsschwelle:</small>
+                    <div class="input-group mb-3">
+                        <input id="bodenfeuchteschwelle" type="text" class="form-control" placeholder="Bodenfeuchtigkeitswert" aria-label="Bodenfeuchtigkeit" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
+                        </div>
+                    </div>
+
+                    <small>Lichttaktung:</small>
+                    <div class="input-group mb-3">
+                        <input id="licht_takt" type="text" class="form-control" placeholder="Sekunden" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
+                        </div>
+                    </div>
+
+                    <small>Temperatur:</small>
+                    <div class="input-group mb-3">
+                        <input id="temp" type="text" class="form-control" placeholder="Grad Celsius" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
+                        </div>
+                    </div>
+
+                    <small>Wasserstandwarnung bei:</small>
+                    <div class="input-group mb-3">
+                        <input id="wasserstand" type="text" class="form-control" placeholder="Prozent" aria-label="Lüfter Rounds per minute" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="button" id="button-addon2" onclick="getInputFromField(this)">Ändern</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
 
-      
+        <div class="col-md-6">
+            <div class="card" style="margin-right: 12px;">
+                <div class="card-body">
+                    <h5 class="card-title">Aktive Einstellungen</h5>
+                    <object data="{{ url_for('static', filename='general_settings.txt')}}">Browser not Supported</object>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 
-      <script>
-      
-      function getInputFromField(button){
 
-        var currentInput = $(button).parent().parent().children().val();
-        var currentField = $(button).parent().parent().children().attr('id');
 
-        var infotosend = {}
 
-        infotosend[currentField] = currentInput
+    <script>
+        function getInputFromField(button) {
 
-        console.log(infotosend)
+            var currentInput = $(button).parent().parent().children().val();
+            var currentField = $(button).parent().parent().children().attr('id');
 
-        if (currentInput == "" || currentInput == 0){
+            var infotosend = {}
 
-          $('#wrong_input').removeClass('hidden');
-          $('#success_alert').addClass('hidden');
+            infotosend[currentField] = currentInput
 
-        } else {
-          
-          $('#wrong_input').addClass('hidden');
-          $('#success_alert').removeClass('hidden');
-        
-          sendPOST(infotosend);
-          $(button).parent().parent().children().val('');
+            console.log(infotosend)
 
-        }
+            if (currentInput == "" || currentInput == 0) {
 
-      };
+                $('#wrong_input').removeClass('hidden');
+                $('#success_alert').addClass('hidden');
 
-      function sendPOST(change) {
-        event.preventDefault();
-        
-        console.log(change)
+            } else {
 
-        $.ajax({
-                url:'postchange',
+                $('#wrong_input').addClass('hidden');
+                $('#success_alert').removeClass('hidden');
+
+                sendPOST(infotosend);
+                $(button).parent().parent().children().val('');
+
+            }
+
+        };
+
+        function sendPOST(change) {
+            event.preventDefault();
+
+            console.log(change)
+
+            $.ajax({
+                url: 'postchange',
                 type: "POST",
                 data: JSON.stringify(change),
                 datatype: "json",
@@ -156,13 +162,15 @@
                 success: function(response) {
                     console.log(response);
                 },
-                error: function(error){
+                error: function(error) {
                     console.log(error);
                 }
             });
-      };
-
-      </script>
-      <script>feather.replace();</script>
+        };
+    </script>
+    <script>
+        feather.replace();
+    </script>
 </body>
+
 </html>
