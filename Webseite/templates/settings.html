@@ -96,7 +96,19 @@
           </div>
 
         </div>
+        <div class="col-md-6">
+          <small> </small>
+          <div class="card" style="margin-top: 25px;">
+            <div class="card-body">
+              <h5 class="card-title">Aktive Einstellungen</h5>
+              <br>
+              <object data="{{ url_for('static', filename='general_settings.txt')}}" width="300" height="200">Not supported by browser</object>
+            </div>
+          </div>
+        </div>
       </div>
+
+      
 
 
 
@@ -124,6 +136,7 @@
           $('#success_alert').removeClass('hidden');
         
           sendPOST(infotosend);
+          $(button).parent().parent().children().val('');
 
         }
 

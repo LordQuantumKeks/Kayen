@@ -1,4 +1,0 @@
-luft_rpm=280
-bodenfeuchteschwelle=123
-licht_takt=444
-temp=12
